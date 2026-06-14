@@ -1,0 +1,38 @@
+[
+  {
+    "screenId": "41af58139e414952a00a2742daa0c789",
+    "name": "Record Editor - StackLens Canary",
+    "type": "form",
+    "description": "Record Editor - StackLens Canary screen",
+    "surfaceIds": [
+      "SURF_RECORD_EDITOR"
+    ]
+  },
+  {
+    "screenId": "0bdde0216bcb4fa29bb67e734a6dacf7",
+    "name": "Empty and Error Recovery - StackLens Canary",
+    "type": "error",
+    "description": "Empty and Error Recovery - StackLens Canary screen",
+    "surfaceIds": [
+      "SURF_EMPTY_AND_ERROR_RECOVERY"
+    ]
+  },
+  {
+    "screenId": "6e242e90e9564089a929b4a356794110",
+    "name": "Record Operations - StackLens Canary",
+    "type": "app-screen",
+    "description": "Record Operations - StackLens Canary screen",
+    "surfaceIds": [
+      "SURF_RECORD_OPERATIONS"
+    ]
+  },
+  {
+    "screenId": "f090555ecb124e1492082500ee8d80c9",
+    "name": "Insights - StackLens Canary",
+    "type": "app-screen",
+    "description": "Insights - StackLens Canary screen",
+    "surfaceIds": [
+      "SURF_INSIGHTS"
+    ]
+  }
+]

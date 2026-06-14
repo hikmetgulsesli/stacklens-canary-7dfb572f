@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StackLens Canary - Recovery</title>
+<!-- Google Fonts: Hanken Grotesk & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#4d4632",
+                    "surface-variant": "#353437",
+                    "tertiary-container": "#d2d0d9",
+                    "primary": "#ffecb9",
+                    "on-primary-container": "#6c5700",
+                    "surface": "#131315",
+                    "secondary": "#c8c6c9",
+                    "inverse-on-surface": "#313032",
+                    "on-secondary-fixed-variant": "#47464a",
+                    "secondary-fixed": "#e4e1e5",
+                    "outline": "#9a9078",
+                    "on-tertiary-fixed": "#1b1b21",
+                    "error-container": "#93000a",
+                    "on-secondary-container": "#b6b4b8",
+                    "on-primary-fixed": "#231b00",
+                    "primary-fixed-dim": "#eec200",
+                    "on-tertiary-container": "#595960",
+                    "on-primary-fixed-variant": "#574500",
+                    "tertiary-fixed": "#e3e1ea",
+                    "tertiary": "#eeecf5",
+                    "secondary-container": "#47464a",
+                    "surface-bright": "#39393b",
+                    "surface-container-highest": "#353437",
+                    "inverse-surface": "#e5e1e4",
+                    "background": "#131315",
+                    "on-primary": "#3c2f00",
+                    "primary-container": "#facc15",
+                    "on-tertiary": "#303037",
+                    "on-surface": "#e5e1e4",
+                    "on-surface-variant": "#d1c6ab",
+                    "on-error": "#690005",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed": "#ffe083",
+                    "surface-container-lowest": "#0e0e10",
+                    "surface-tint": "#eec200",
+                    "surface-dim": "#131315",
+                    "secondary-fixed-dim": "#c8c6c9",
+                    "on-secondary-fixed": "#1b1b1e",
+                    "on-secondary": "#303033",
+                    "on-background": "#e5e1e4",
+                    "surface-container-low": "#1c1b1d",
+                    "on-tertiary-fixed-variant": "#46464d",
+                    "error": "#ffb4ab",
+                    "inverse-primary": "#735c00",
+                    "tertiary-fixed-dim": "#c7c5ce",
+                    "surface-container": "#201f22",
+                    "surface-container-high": "#2a2a2c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "grid-gutter": "1rem",
+                    "container-padding": "1.5rem",
+                    "element-gap": "0.75rem",
+                    "unit": "4px",
+                    "stack-compact": "0.25rem"
+            },
+            "fontFamily": {
+                    "title-sm": [
+                            "Hanken Grotesk"
+                    ],
+                    "code-label": [
+                            "JetBrains Mono"
+                    ],
+                    "headline-md": [
+                            "Hanken Grotesk"
+                    ],
+                    "code-data": [
+                            "JetBrains Mono"
+                    ],
+                    "body-md": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-sm": [
+                            "Hanken Grotesk"
+                    ],
+                    "display-lg": [
+                            "Hanken Grotesk"
+                    ]
+            },
+            "fontSize": {
+                    "title-sm": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "code-label": [
+                            "11px",
+                            {
+                                    "lineHeight": "14px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "code-data": [
+                            "13px",
+                            {
+                                    "lineHeight": "18px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg": [
+                            "30px",
+                            {
+                                    "lineHeight": "36px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md min-h-screen flex overflow-hidden">
+<!-- SideNavBar Component -->
+<aside class="bg-surface h-screen w-64 fixed left-0 top-0 border-r border-outline-variant flex flex-col py-grid-gutter z-40">
+<!-- Brand Header -->
+<div class="px-container-padding mb-8">
+<h1 class="font-display-lg text-display-lg font-bold text-primary-container tracking-tight">StackLens Canary</h1>
+<p class="font-code-label text-code-label text-on-surface-variant uppercase mt-1">Technical Operations</p>
+</div>
+<!-- Main Navigation Tabs -->
+<nav class="flex-1 flex flex-col gap-1 px-2">
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">analytics</span>
+<span class="font-title-sm text-title-sm">Operations</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">insights</span>
+<span class="font-title-sm text-title-sm">Insights</span>
+</a>
+<!-- Active Tab (Recovery) -->
+<a class="flex items-center gap-3 px-4 py-2 text-primary-container border-r-2 border-primary-container bg-surface-container-high active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">restart_alt</span>
+<span class="font-title-sm text-title-sm">Recovery</span>
+</a>
+</nav>
+<!-- CTA -->
+<div class="px-container-padding mt-auto mb-4">
+<button class="w-full bg-primary-container text-on-primary-container font-title-sm text-title-sm py-2 rounded-DEFAULT font-bold active:scale-95 transition-transform">
+                System Monitor
+            </button>
+</div>
+<!-- Footer Tabs -->
+<nav class="flex flex-col gap-1 px-2 border-t border-outline-variant pt-4">
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-on-surface-variant hover:bg-surface-variant hover:text-primary transition-colors active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help_outline</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-64 flex flex-col h-screen relative">
+<!-- TopAppBar Component -->
+<header class="bg-surface font-title-sm text-title-sm docked full-width top-0 sticky z-50 border-b border-outline-variant flex justify-between items-center h-14 px-container-padding">
+<div class="flex items-center gap-6">
+<!-- Mobile Only Brand/Nav Fallback (Hidden on Desktop per rules) -->
+<div class="md:hidden font-headline-md text-headline-md font-bold text-primary-container">StackLens Canary</div>
+<!-- Search Bar Placeholder -->
+<div class="hidden md:flex items-center bg-background border border-outline-variant px-3 py-1.5 rounded-DEFAULT">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] mr-2">search</span>
+<input class="bg-transparent border-none text-body-sm text-on-surface focus:outline-none focus:ring-0 w-64 placeholder-on-surface-variant" disabled="" placeholder="Search parameters..." type="text"/>
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="hidden md:block bg-transparent text-on-surface border border-outline-variant px-4 py-1.5 text-body-md hover:text-primary transition-colors active:opacity-80">
+                    Create Record
+                </button>
+<div class="flex items-center gap-3 border-l border-outline-variant pl-4 ml-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors active:opacity-80">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Canvas Area (Empty / Error State) -->
+<main class="flex-1 bg-surface-container-lowest p-container-padding flex flex-col items-center justify-center overflow-y-auto">
+<!-- Recovery Card -->
+<div class="w-full max-w-2xl bg-surface border border-outline-variant relative shadow-sm flex flex-col">
+<!-- Status Accent Strip -->
+<div class="absolute top-0 left-0 w-full h-1 bg-error-container"></div>
+<div class="p-8 flex flex-col items-center text-center">
+<!-- Icon Indicator -->
+<div class="mb-6 relative">
+<span class="material-symbols-outlined text-[72px] text-error drop-shadow-md" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<!-- Header -->
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2 font-bold tracking-tight">System Load Failure</h2>
+<!-- Guidance -->
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-md">
+                        Unable to retrieve module telemetry. The upstream data source may be experiencing high latency, or your active filter configuration returned an empty set.
+                    </p>
+<!-- Data/Log Context (Industrial Detail) -->
+<div class="w-full text-left bg-background border border-outline-variant p-4 font-code-data text-code-data text-on-surface-variant mb-8 overflow-x-auto shadow-inner rounded-DEFAULT">
+<div class="flex gap-4 mb-1">
+<span class="text-primary opacity-70 w-12 shrink-0">[SYS]</span>
+<span class="truncate">Initiating telemetry sync sequence...</span>
+</div>
+<div class="flex gap-4 mb-1">
+<span class="text-primary opacity-70 w-12 shrink-0">[SYS]</span>
+<span class="truncate">Applying active filters: { env: 'prod', region: 'us-east' }</span>
+</div>
+<div class="flex gap-4">
+<span class="text-error font-bold w-12 shrink-0">[ERR]</span>
+<span class="text-error-container">ERR_CONNECTION_TIMED_OUT: Target cluster unreachable. Manual intervention required.</span>
+</div>
+</div>
+<!-- Action Area -->
+<div class="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+<button class="w-full sm:w-auto bg-primary-container text-on-primary-container font-title-sm text-title-sm font-bold px-8 py-2.5 rounded-DEFAULT hover:bg-primary transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-offset-surface focus:ring-primary-container">
+                            Retry Load
+                        </button>
+<button class="w-full sm:w-auto bg-transparent text-on-surface border border-outline-variant font-title-sm text-title-sm px-8 py-2.5 rounded-DEFAULT hover:bg-surface-variant transition-colors">
+                            Create Record
+                        </button>
+</div>
+<!-- Tertiary Action -->
+<button class="mt-6 font-body-sm text-body-sm text-primary hover:text-primary-fixed underline underline-offset-4 transition-colors">
+                        Clear Active Filters
+                    </button>
+</div>
+</div>
+<!-- Global Footer / Timestamp (Contextual grounding) -->
+<div class="mt-8 font-code-label text-code-label text-on-surface-variant flex gap-4 opacity-60">
+<span>STATUS: <span class="text-error">DEGRADED</span></span>
+<span>|</span>
+<span>NODE: CANARY-ALPHA-01</span>
+</div>
+</main>
+</div>
+</body></html>

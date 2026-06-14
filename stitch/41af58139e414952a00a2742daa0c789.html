@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Record Editor - StackLens Canary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#4d4632",
+                        "surface-variant": "#353437",
+                        "tertiary-container": "#d2d0d9",
+                        "primary": "#ffecb9",
+                        "on-primary-container": "#6c5700",
+                        "surface": "#131315",
+                        "secondary": "#c8c6c9",
+                        "inverse-on-surface": "#313032",
+                        "on-secondary-fixed-variant": "#47464a",
+                        "secondary-fixed": "#e4e1e5",
+                        "outline": "#9a9078",
+                        "on-tertiary-fixed": "#1b1b21",
+                        "error-container": "#93000a",
+                        "on-secondary-container": "#b6b4b8",
+                        "on-primary-fixed": "#231b00",
+                        "primary-fixed-dim": "#eec200",
+                        "on-tertiary-container": "#595960",
+                        "on-primary-fixed-variant": "#574500",
+                        "tertiary-fixed": "#e3e1ea",
+                        "tertiary": "#eeecf5",
+                        "secondary-container": "#47464a",
+                        "surface-bright": "#39393b",
+                        "surface-container-highest": "#353437",
+                        "inverse-surface": "#e5e1e4",
+                        "background": "#131315",
+                        "on-primary": "#3c2f00",
+                        "primary-container": "#facc15",
+                        "on-tertiary": "#303037",
+                        "on-surface": "#e5e1e4",
+                        "on-surface-variant": "#d1c6ab",
+                        "on-error": "#690005",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#ffe083",
+                        "surface-container-lowest": "#0e0e10",
+                        "surface-tint": "#eec200",
+                        "surface-dim": "#131315",
+                        "secondary-fixed-dim": "#c8c6c9",
+                        "on-secondary-fixed": "#1b1b1e",
+                        "on-secondary": "#303033",
+                        "on-background": "#e5e1e4",
+                        "surface-container-low": "#1c1b1d",
+                        "on-tertiary-fixed-variant": "#46464d",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#735c00",
+                        "tertiary-fixed-dim": "#c7c5ce",
+                        "surface-container": "#201f22",
+                        "surface-container-high": "#2a2a2c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid-gutter": "1rem",
+                        "container-padding": "1.5rem",
+                        "element-gap": "0.75rem",
+                        "unit": "4px",
+                        "stack-compact": "0.25rem"
+                    },
+                    "fontFamily": {
+                        "title-sm": ["Hanken Grotesk"],
+                        "code-label": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "code-data": ["JetBrains Mono"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "code-label": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "code-data": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "display-lg": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom scrollbar for textareas to maintain industrial look */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background: #1c1b1d; /* surface-container-low */
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background: #4d4632; /* outline-variant */
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- Task-Focused Header (Navigation suppressed per rules) -->
+<header class="border-b border-outline-variant bg-surface sticky top-0 z-50 px-container-padding h-14 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary-container">StackLens Canary</span>
+<span class="text-outline-variant">|</span>
+<span class="font-title-sm text-title-sm text-on-surface">Record Editor</span>
+</div>
+<button class="flex items-center justify-center p-2 text-on-surface-variant hover:text-on-surface transition-colors" title="Close Editor">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</header>
+<main class="flex-1 overflow-y-auto py-8 px-container-padding">
+<div class="max-w-4xl mx-auto space-y-6">
+<!-- Unsaved State Feedback Banner -->
+<div class="bg-primary-container/10 border border-primary-container/30 rounded p-4 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container fill" data-icon="warning">warning</span>
+<div class="flex-1">
+<p class="font-title-sm text-title-sm text-primary-container">You have unsaved changes</p>
+<p class="font-body-sm text-body-sm text-primary-container/80 mt-1">Please save your modifications before leaving this screen to prevent data loss in the monitoring stack.</p>
+</div>
+<button class="text-primary-container/80 hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Form Container -->
+<div class="bg-surface border border-outline-variant rounded shadow-none">
+<div class="p-6 border-b border-outline-variant">
+<h2 class="font-headline-md text-headline-md text-on-surface">Module Stack Configuration</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Define the operational parameters and recovery protocols for this canary node.</p>
+</div>
+<form class="p-6 space-y-8" onsubmit="event.preventDefault();">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Module Name -->
+<div class="space-y-2">
+<label class="flex items-center gap-2 font-title-sm text-title-sm text-on-surface-variant" for="module-name">
+                                Module Name <span class="text-error" title="Required">*</span>
+</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded p-3 font-code-data text-code-data text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-shadow" id="module-name" placeholder="e.g. core-processing-node" required="" type="text" value="auth-service-gateway-01"/>
+</div>
+<!-- Ownership Group -->
+<div class="space-y-2">
+<label class="flex items-center gap-2 font-title-sm text-title-sm text-on-surface-variant" for="ownership-group">
+                                Ownership Group <span class="text-error" title="Required">*</span>
+</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded p-3 font-code-data text-code-data text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-shadow" id="ownership-group" placeholder="e.g. platform-engineering" required="" type="text"/>
+<p class="font-body-sm text-body-sm text-error flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="error">error</span>
+                                Ownership Group is required for escalation mapping.
+                            </p>
+</div>
+</div>
+<!-- Pipeline Type (Dropdown) -->
+<div class="space-y-2 max-w-md">
+<label class="flex items-center gap-2 font-title-sm text-title-sm text-on-surface-variant" for="pipeline-type">
+                            Pipeline Type
+                        </label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-lowest border border-outline-variant rounded p-3 pr-10 font-code-data text-code-data text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-shadow" id="pipeline-type">
+<option value="ingestion">Data Ingestion</option>
+<option selected="" value="processing">Stream Processing</option>
+<option value="storage">Persistent Storage</option>
+<option value="gateway">API Gateway</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- Recovery Instructions (Textarea) -->
+<div class="space-y-2">
+<label class="flex items-center justify-between font-title-sm text-title-sm text-on-surface-variant" for="recovery-instructions">
+<span>Recovery Instructions <span class="text-error" title="Required">*</span></span>
+<span class="font-code-label text-code-label text-on-surface-variant/50">Markdown Supported</span>
+</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded p-3 font-code-data text-code-data text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-shadow resize-y" id="recovery-instructions" placeholder="Provide step-by-step technical instructions for L1 support to follow if this module triggers a critical alert..." required="" rows="6">1. Verify upstream Kafka partition lag on cluster-A.
+2. If lag &gt; 50k, initiate horizontal pod autoscaling override:
+   kubectl scale deploy auth-service-gateway --replicas=8
+3. Monitor for 5 minutes. If no resolution, page Platform-OnCall.</textarea>
+</div>
+<!-- Form Actions -->
+<div class="pt-6 border-t border-outline-variant flex items-center justify-end gap-4">
+<button class="px-6 py-2 rounded bg-transparent border border-outline-variant text-on-surface font-title-sm text-title-sm hover:bg-surface-variant hover:text-on-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-background" type="button">
+                            Cancel Edit
+                        </button>
+<button class="px-6 py-2 rounded bg-primary-container text-on-primary-container font-headline-md text-[16px] font-bold hover:bg-primary-fixed hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-background flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="save">save</span>
+                            Save Record
+                        </button>
+</div>
+</form>
+</div>
+</div>
+</main>
+</body></html>
